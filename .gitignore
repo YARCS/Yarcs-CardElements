@@ -8,3 +8,6 @@ logs
 
 # Dependency directory
 node_modules
+
+# Keys
+google_key.json

@@ -29,7 +29,7 @@ const cardStyle = (type) => {
 const renderCard = (type) => html`<div style=${cardStyle(type)} />`
 
 module.exports = (attrs) => {
-  const numberOfCards = Number(attrs.number);
+  const numberOfCards = Number(attrs.number) || 0;
   return html`
     <div style=${cardContainerStyle}>
       ${[...Array(numberOfCards)].map(renderCard.bind(null, attrs.type))}

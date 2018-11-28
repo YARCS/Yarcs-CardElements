@@ -5,11 +5,13 @@ const html = Tram.html({
 })
 
 module.exports = (store, actions) => {
-  const advanceColor = () => {
-    actions.advance()
-  }
+  console.log(store.cards)
+  const cardElements =Object.keys(store.cards)
+    .map((cardKey) => store.cards[cardKey])
+    .map((card) => html`<AttackCard {card} />`)
   return html`
     <div>
+      ${cardElements}
       <AttackCard
         name="Arc Lightning"
         ap="2"
