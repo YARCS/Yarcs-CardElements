@@ -8,7 +8,22 @@ module.exports = (store, actions) => {
   console.log(store.cards)
   const cardElements =Object.keys(store.cards)
     .map((cardKey) => store.cards[cardKey])
-    .map((card) => html`<AttackCard {card} />`)
+    .map((card) => html`
+      <AttackCard
+        name=${card.name}
+        ap=${card.ap}
+        type=${card.type}
+        baseStat=${card.baseStat}
+        range=${card.range}
+        damage=${card.damage}
+        crit=${card.crit}
+        success=${card.success}
+        miss=${card.miss}
+        description=${card.description}
+        ability=${card.ability}
+        flavor=${card.flavor}
+      />
+    `)
   return html`
     <div>
       ${cardElements}
@@ -16,7 +31,7 @@ module.exports = (store, actions) => {
         name="Arc Lightning"
         ap="2"
         type="lightning"
-        baseType="INT"
+        baseStat="INT"
         range="Line of Sight*"
         damage="3"
         crit="2"

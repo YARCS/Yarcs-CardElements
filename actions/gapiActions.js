@@ -7,9 +7,7 @@ function catchErrors(reason) {
 const handleSheetLoad = (actions) => (response) => {
   var result = response.result;
   const cardDataArray = result.valueRanges[0].values;
-  cardDataArray
-    .filter((data, index) => index !== 0 && data.length !== 0)
-    .forEach((data) => actions.addCard(data))
+  actions.addCards(cardDataArray);
 }
 
 const handleClientLoad = () => {

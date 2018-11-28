@@ -1,17 +1,9 @@
 const Tram = require('tram-one')
 const htmlForeignObject = ({style}, children) => Tram.html()`<div style=${style}>${children}</div>`
-const flexSmallFateCards = (attrs, children) => Tram.html({
-  SmallFateCard: require('./SmallFateCard')
-})`
-<div style="display: flex; justify-content: space-evenly">
-  <SmallFateCard number=${attrs.crit} type="crit" />
-  <SmallFateCard number=${attrs.success} type="success" />
-  <SmallFateCard number=${attrs.miss} type="miss" />
-</div>
-`
+
 const svg = Tram.svg({
   htmlForeignObject,
-  flexSmallFateCards
+  SmallFateGroup: require('./SmallFateGroup')
 })
 
 const borderStyle = `
@@ -36,7 +28,24 @@ const apStyle = `
   background: white;
 `
 
+const nameStyle = (name) => `
+  font-size: ${name.length > 16 ? 4 : 5}px; 
+  font-weight: bold; 
+  color: white;
+  line-height: 4px;
+`
+const nameYPosition = (name) => {
+  if (name.length <= 16) {
+    return 2;
+  }
+  if (name.length > 20) {
+    return 1;
+  }
+  return 3;
+};
+
 module.exports = (attrs) => {
+  console.log(attrs);
   return svg`
     <svg style="border-radius: 18px" width="216" height="336" enable-background="new" viewBox="0 0 57.2 88.9">
       <defs>
@@ -91,47 +100,47 @@ module.exports = (attrs) => {
       <g>
         <foreignObject x="33" y="19" width="20" height="5">
           <htmlForeignObject style="font-size: 4px; font-weight: bold; text-align: right; color: white;">
-              DMG ${attrs.damage}
+            DMG ${attrs.damage}
           </htmlForeignObject>
         </foreignObject>
         <foreignObject x="26" y="12" width="20" height="5">
           <htmlForeignObject style=${borderStyle}>
-              ${attrs.range}
+            ${attrs.range}
           </htmlForeignObject>
         </foreignObject>
         <foreignObject x="14" y="12" width="10" height="5">
           <htmlForeignObject style=${borderStyle}>
-              ${attrs.baseType}
+            ${attrs.baseStat}
           </htmlForeignObject>
         </foreignObject>
-        <foreignObject x="4" y="2" width="40" height="10">
-          <htmlForeignObject style="font-size: 5px; font-weight: bold; color: white;">
-              ${attrs.name}
+        <foreignObject x="4" y="${nameYPosition(attrs.name)}" width="40" height="10">
+          <htmlForeignObject style=${nameStyle(attrs.name)}>
+            ${attrs.name}
           </htmlForeignObject>
         </foreignObject>
         <foreignObject x="45" y="1" width="10" height="10">
           <htmlForeignObject style=${apStyle}>
-              ${attrs.ap}
+            ${attrs.ap}
           </htmlForeignObject>
         </foreignObject>
         <path fill="url(#O)" d="M6.8 221.3h2l-1 1.1h1l-2.1 2.3.7-1.5h-.8z" transform="translate(0 -208.1)"/>
         <foreignObject x="2" y="30" width="53" height="20">
           <htmlForeignObject style="font-size: 3px; text-align: center">
-              ${attrs.description}
+            ${attrs.description}
           </htmlForeignObject>
         </foreignObject>
         <foreignObject x="2" y="44" width="53" height="20">
           <htmlForeignObject style="font-size: 3px; text-align: center">
-              ${attrs.ability}
+            ${attrs.ability}
           </htmlForeignObject>
         </foreignObject>
         <foreignObject x="2" y="70" width="53" height="20">
           <htmlForeignObject style="font-size: 3px; text-align: center; font-style: italic;">
-              "${attrs.flavor}"
+            "${attrs.flavor}"
           </htmlForeignObject>
         </foreignObject>
-        <foreignObject x="3" y="19" width="36" height="6">
-            <flexSmallFateCards 
+        <foreignObject x="3" y="19" width="33" height="6">
+            <SmallFateGroup 
               crit=${attrs.crit}
               success=${attrs.success}
               miss=${attrs.miss}
