@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,500,500i,600,600i,700,700i,800,800i');
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('Poppins-Light.ttf') format('truetype');
+}
+
+body {
+  font-family: 'EB Garamond';
+  background: aliceblue;
+}
