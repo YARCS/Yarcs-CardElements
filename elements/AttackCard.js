@@ -100,7 +100,7 @@ module.exports = (attrs) => {
       <g>
         <foreignObject x="33" y="19" width="20" height="5">
           <htmlForeignObject style="font-size: 4px; font-weight: bold; text-align: right; color: white;">
-            DMG ${attrs.damage}
+            ${attrs.damage > 0 ? `DMG ${attrs.damage}` : ''}
           </htmlForeignObject>
         </foreignObject>
         <foreignObject x="26" y="12" width="20" height="5">
