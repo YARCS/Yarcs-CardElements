@@ -1,5 +1,8 @@
 const Tram = require('tram-one');
 
 module.exports = (attrs, children) => Tram.svg()`
-  <path fill="#fff" d="M8.2 16.5l-.8-1.4L6 16l-.8-1.4 3.3-1.9.9 1.4L8 15l1 1.9-.5.3z"/>
+  <g>
+    <rect width="8.7" height="4.2" x=".7" y="1.2" rx=".3" ry=".3"/>
+    <rect width="1.6" height="4.9" x="4.2" y="4.2" rx=".3" ry=".3"/>
+  </g>
 `
