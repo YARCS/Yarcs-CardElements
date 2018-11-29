@@ -3,7 +3,8 @@ const htmlForeignObject = ({style}, children) => Tram.html()`<div style=${style}
 
 const svg = Tram.svg({
   htmlForeignObject,
-  SmallFateGroup: require('./SmallFateGroup')
+  SmallFateGroup: require('./SmallFateGroup'),
+  CardType: require('./types/CardType')
 })
 
 const borderStyle = `
@@ -45,7 +46,6 @@ const nameYPosition = (name) => {
 };
 
 module.exports = (attrs) => {
-  console.log(attrs);
   return svg`
     <svg style="border-radius: 18px" width="216" height="336" enable-background="new" viewBox="0 0 57.2 88.9">
       <defs>
@@ -123,7 +123,7 @@ module.exports = (attrs) => {
             ${attrs.ap}
           </htmlForeignObject>
         </foreignObject>
-        <path fill="url(#O)" d="M6.8 221.3h2l-1 1.1h1l-2.1 2.3.7-1.5h-.8z" transform="translate(0 -208.1)"/>
+        <CardType>${attrs.type}</CardType>
         <foreignObject x="2" y="30" width="53" height="20">
           <htmlForeignObject style="font-size: 3px; text-align: center">
             ${attrs.description}

@@ -4,10 +4,10 @@ module.exports = {
     return sheetData
       .filter((data, index) => index !== 0 && data.length !== 0)
       .reduce((cardsMap, newCardData) => {
-        const [name, cardPool, baseStat, ap, damage, range, description, ability, crit, success, miss, flavor] = newCardData;
+        const [name, type, baseStat, ap, damage, range, description, ability, crit, success, miss, flavor] = newCardData;
         return Object.assign({}, cardsMap, {[name]: {
           name,
-          cardPool,
+          type,
           baseStat,
           ap,
           damage,
